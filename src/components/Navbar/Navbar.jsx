@@ -1,4 +1,5 @@
 import React from 'react';
+import UserProfile from '../Profile/UserProfile';
 
 function Navbar() {
     return (
@@ -28,6 +29,10 @@ function Navbar() {
                         <a href="#" className="btn btn-warning">Login</a>
                         <a href="#" className="btn btn-primary">Register</a>
                     </div>
+
+                    {/* <UserProfile/> */}
+
+
                     {/* Mobile Menu Button */}
                     <div className="md:hidden flex items-center">
                         <button className="text-gray-600 hover:text-gray-900 focus:outline-none">
