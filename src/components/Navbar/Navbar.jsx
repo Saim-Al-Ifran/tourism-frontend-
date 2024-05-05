@@ -1,5 +1,6 @@
 import React from 'react';
 import UserProfile from '../Profile/UserProfile';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
     return (
@@ -26,8 +27,8 @@ function Navbar() {
                     </div>
                     {/* Authentication Links */}
                     <div className="hidden md:flex items-center space-x-4">
-                        <a href="#" className="btn btn-warning">Login</a>
-                        <a href="#" className="btn btn-primary">Register</a>
+                        <Link to="/login" className="btn btn-warning">Login</Link>
+                        <Link to="/register" className="btn btn-primary">Register</Link>
                     </div>
 
                     {/* <UserProfile/> */}
