@@ -4,15 +4,16 @@ import Footer from './components/Footer/Footer'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register';
 import './style.css'
+import Home from './pages/Home/Home';
 const App = () => {
   return (
     <>
            <Router>
               <Navbar />
               <Routes>
-                {/* <Route path="/"  element={<Home/>} /> */}
+                <Route path="/"  element={<Home/>} />
                 <Route path="/login" element={<Login/>} />
-                <Route path="/register"   element={<Register/> } />
+                <Route path="/register"  element={<Register/> } />
          
                 {/* <Route path="*" element={<NotFoundPage/>}/> */}
               </Routes>
