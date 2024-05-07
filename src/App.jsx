@@ -5,6 +5,7 @@ import Login from './pages/Login/Login'
 import Register from './pages/Register/Register';
 import './style.css'
 import Home from './pages/Home/Home';
+import AlltouristSpot from './pages/AllTouristSpot/AlltouristSpot';
 const App = () => {
   return (
     <>
@@ -12,6 +13,7 @@ const App = () => {
               <Navbar />
               <Routes>
                 <Route path="/"  element={<Home/>} />
+                <Route path="/all_spot"  element={<AlltouristSpot/>} />
                 <Route path="/login" element={<Login/>} />
                 <Route path="/register"  element={<Register/> } />
          
