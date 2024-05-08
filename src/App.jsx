@@ -6,6 +6,10 @@ import Register from './pages/Register/Register';
 import './style.css'
 import Home from './pages/Home/Home';
 import AlltouristSpot from './pages/AllTouristSpot/AlltouristSpot';
+import AddTouristsSpot from './pages/AddTouristSpot/AddTouristSpot';
+import Mylist from './pages/Mylist/Mylist';
+
+
 const App = () => {
   return (
     <>
@@ -14,6 +18,8 @@ const App = () => {
               <Routes>
                 <Route path="/"  element={<Home/>} />
                 <Route path="/all_spot"  element={<AlltouristSpot/>} />
+                <Route path="/add_spot"  element={<AddTouristsSpot/>} />
+                <Route path="/mylist"  element={<Mylist/>} />
                 <Route path="/login" element={<Login/>} />
                 <Route path="/register"  element={<Register/> } />
          
