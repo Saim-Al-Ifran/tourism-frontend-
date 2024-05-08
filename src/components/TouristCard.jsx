@@ -7,6 +7,7 @@ import {
     Typography,
     Button,
   } from "@material-tailwind/react";
+import { Link } from 'react-router-dom';
 
 const TouristCard = () => {
   return (
@@ -33,7 +34,10 @@ const TouristCard = () => {
         </Typography>
         </CardBody>
         <CardFooter className="pt-0">
-        <Button>View details</Button>
+        <Link to="/spot_details/4">
+           <Button>View details</Button>
+        </Link>
+        
         </CardFooter>
     </Card>
 

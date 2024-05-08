@@ -9,6 +9,7 @@ import AlltouristSpot from './pages/AllTouristSpot/AlltouristSpot';
 import AddTouristsSpot from './pages/AddTouristSpot/AddTouristSpot';
 import Mylist from './pages/Mylist/Mylist';
 import EditTouristSpot from './pages/EditTouristSpot/EditTouristSpot';
+import TouristSpotDetails from './pages/TouristSpotDetails/TouristSpotDetails';
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
                 <Route path="/add_spot"  element={<AddTouristsSpot/>} />
                 <Route path="/mylist"  element={<Mylist/>} />
                 <Route path="/edit_spot/:id"  element={<EditTouristSpot/>} />
+                <Route path="/spot_details/:id"  element={<TouristSpotDetails/>} />
                 <Route path="/login" element={<Login/>} />
                 <Route path="/register"  element={<Register/> } />
          
