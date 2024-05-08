@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import UserProfile from '../Profile/UserProfile';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 
 function Navbar() {
+    const {user} = useContext(AuthContext);
+
     return (
         <nav className="bg-white shadow-lg">
             <div className="container mx-auto px-4">
@@ -22,8 +25,13 @@ function Navbar() {
                     <div className="hidden md:flex space-x-4">
                         <Link to="/" className="text-gray-600 hover:text-gray-900">Home</Link>
                         <Link to="/all_spot" className="text-gray-600 hover:text-gray-900">All Tourists Spot</Link>
-                        <Link to="/add_spot" className="text-gray-600 hover:text-gray-900">Add Tourists Spot</Link>
-                        <Link to="/mylist" className="text-gray-600 hover:text-gray-900">My List</Link>
+                        { user && 
+                            <>
+                                <Link to="/add_spot" className="text-gray-600 hover:text-gray-900">Add Tourists Spot</Link>
+                                <Link to="/mylist" className="text-gray-600 hover:text-gray-900">My List</Link>
+                            </>
+                         }
+
                     </div>
                     {/* Authentication Links */}
                     <div className="hidden md:flex items-center space-x-4">

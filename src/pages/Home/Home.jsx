@@ -3,12 +3,16 @@ import Banner from './Banner/Banner'
 import TouristCard from '../../components/TouristCard'
 import PricingSection from './Pricing/PricingSection'
 import DestinationSection from './PopularDestination/DestinationSection'
+import { useContext } from 'react'
+import { AuthContext } from '../../providers/AuthProvider'
  
 
  
 
 
 const Home = () => {
+  const {user} = useContext(AuthContext);
+   
   return (
      <>
         <Banner/>
