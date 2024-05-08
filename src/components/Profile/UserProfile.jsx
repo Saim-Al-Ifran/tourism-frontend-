@@ -2,13 +2,13 @@ import { useContext } from 'react'
 import { AuthContext } from '../../providers/AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from 'react-router-dom';
+ 
 
 const UserProfile = ({user}) => {
   const {logOut} = useContext(AuthContext);
 
   const{displayName,photoURL } = user;
-
+  console.log(photoURL); 
   const handleLogOut = async()=>{
     try{
         await logOut();
@@ -29,9 +29,7 @@ const UserProfile = ({user}) => {
         </div>
       </div>
       <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-        {/* <Link to="/profile"> */}
  
-          {/* </Link> */}
 
         <li onClick={handleLogOut} ><a>Logout</a></li>
       </ul>

@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         const authUserCredential = await createUserWithEmailAndPassword(auth, email, password);
         const { user } = authUserCredential;
-        await updateProfile(user, { displayName: name, photoURL: photoUrl });
+        await updateProfileFirebase(user, { displayName: name, photoURL: photoUrl });
         return user;
     }
 
