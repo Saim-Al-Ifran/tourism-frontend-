@@ -1,12 +1,46 @@
-
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-
+import { useContext, useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { signIn, signInWithGoogle, signInWithGithub , user ,error } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+    console.log(error);
+    useEffect(() => {
+      document.title ="Login";
+      if (user) {
+        navigate("/");
+      }
+    }, [navigate, user]);
+  
+    const handleSubmit = async (e) => {
+      console.log(error); 
+      e.preventDefault();
+  
+      try {
+        await signIn(email, password);
+        navigate(location?.state ? location.state : '/');
+      } catch (error) {
+        toast.error('Invalid user credentials');
+      }
+    };
+
+    const handleGoogleLogin = async () => {
+      try {
+        await signInWithGoogle();
+        if(!error){
+          navigate(location?.state ? location.state : '/');
+         }
+         toast.error('Google login failed');
+      } catch (error) {
+        toast.error('Google login failed');
+      }
+    };
 
   return (
       <>
@@ -48,7 +82,7 @@ const Login = () => {
               <div className='p-4 space-y-3 mb-6'>
                 <h2 className="text-xl  text-center">or</h2>
 
-                <button className="btn btn-outline w-full"  >
+                <button className="btn btn-outline w-full"   onClick={handleGoogleLogin}>
                   <i className="fab fa-google"></i> Google
                 </button>
  

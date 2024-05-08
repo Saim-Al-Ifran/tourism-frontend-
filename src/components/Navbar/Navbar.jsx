@@ -5,7 +5,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 
 function Navbar() {
     const {user} = useContext(AuthContext);
-
+    console.log(user);
     return (
         <nav className="bg-white shadow-lg">
             <div className="container mx-auto px-4">
@@ -34,12 +34,15 @@ function Navbar() {
 
                     </div>
                     {/* Authentication Links */}
-                    <div className="hidden md:flex items-center space-x-4">
-                        <Link to="/login" className="btn btn-warning">Login</Link>
-                        <Link to="/register" className="btn btn-primary">Register</Link>
-                    </div>
+                    {user ? <UserProfile user={user}/> :
+                        <div className="hidden md:flex items-center space-x-4">
+                            <Link to="/login" className="btn btn-warning">Login</Link>
+                            <Link to="/register" className="btn btn-primary">Register</Link>
+                        </div>
+                    }
 
-                    {/* <UserProfile/> */}
+
+                      
 
 
                     {/* Mobile Menu Button */}
