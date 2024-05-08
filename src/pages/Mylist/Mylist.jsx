@@ -1,4 +1,5 @@
 import { Button } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 const Mylist = () => {
   return (
@@ -42,7 +43,10 @@ const Mylist = () => {
                             </td>
                             <td>Bangladesh</td>
                             <th>
-                               <Button color="green" className="mr-2"><i class="fa-solid fa-pen-to-square"></i> Edit</Button>
+                                <Link to="/edit_spot/2">
+                                    <Button color="green" className="mr-2"><i class="fa-solid fa-pen-to-square"></i> Edit</Button> 
+                                </Link>
+                              
                                <Button color="red"><i class="fa-solid fa-trash"></i> Delete</Button>
                             </th>
                          </tr>
