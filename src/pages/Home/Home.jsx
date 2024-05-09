@@ -11,14 +11,14 @@ import axios from 'axios'
 
 
 const Home = () => {
-  const {user} = useContext(AuthContext);
+ 
   const [touristSpots, setTouristSpots] = useState([]);
   const [loading,setLoading] = useState(true);
 
 
   const fetchTouristSpots = async () => {
     try {
-        const response = await axios.get('http://localhost:3000/tourist_spots');
+        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/tourist_spots`);
         setTouristSpots(response.data);
         setLoading(false);
     } catch (error) {
@@ -29,7 +29,7 @@ const Home = () => {
   useEffect(() => {
       fetchTouristSpots();
   }, []);
-  console.log(touristSpots);
+ 
    
   return (
      <>

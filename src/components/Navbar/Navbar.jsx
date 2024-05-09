@@ -5,7 +5,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 
 function Navbar() {
     const {user} = useContext(AuthContext);
-    console.log(user);
+    
     return (
         <nav className="bg-white shadow-lg">
             <div className="container mx-auto px-4">
@@ -40,7 +40,7 @@ function Navbar() {
                             <Link to="/register" className="btn btn-primary">Register</Link>
                         </div>
                     }
-
+ 
 
                       
 

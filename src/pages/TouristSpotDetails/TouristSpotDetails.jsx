@@ -1,22 +1,52 @@
 import { Button } from '@material-tailwind/react';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 const TouristSpotDetails = () => {
+
+    const {id} = useParams();
+    const [touristSpot, setTouristSpot] = useState(null);
+    const [loading,setLoading] = useState(true);
+  
+
+    const fetchTouristSpot = async () => {
+      try {
+          const response = await axios.get(`http://localhost:3000/tourist_spots/${id}`);
+          setTouristSpot(response.data);
+          setLoading(false);
+      } catch (error) {
+          console.error('Error fetching tourist spots:', error);
+      }
+  };
+  
+    useEffect(() => {
+        fetchTouristSpot();
+    }, []);
     
+    
+
     return (
-        <div className="container mx-auto py-8">
-            <h2 className="text-3xl font-bold mb-4 text-center">Shundarban</h2>
+        <>
+       
+
+        {loading ?  
+            <div className="w-full flex items-center justify-center mt-[5rem] mb-[5rem]">
+                <span className="loading loading-infinity loading-lg"></span>
+           </div>
+      : (
+                <div className="container mx-auto py-8">
+            <h2 className="text-3xl font-bold mb-4 text-center">{touristSpot?.tourists_spot_name}</h2>
             <div className="max-w-lg mx-auto">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" alt='akhono' className="rounded-lg mb-4" />
-                <p className="text-lg mb-2"><strong>Country: </strong>Nepal</p>
-                <p className="text-lg mb-2"><strong>Location:</strong> Shundarban</p>
-                <p className="text-lg mb-2"><strong>Spot name:</strong> Sajek Valley</p>
-                <p className="text-lg mb-2"><strong>Short Description:</strong> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate quasi ipsum repellendus distinctio, odio autem magnam quia obcaecati temporibus, itaque error vero labore maiores sunt unde ipsam. Nostrum, expedita quo!</p>
-                <p className="text-lg mb-2"><strong>Average Cost:</strong> $200</p>
-                <p className="text-lg mb-2"><strong>Seasonality:</strong> Rainy season</p>
-                <p className="text-lg mb-2"><strong>Travel Time:</strong> 10hr</p>
-                <p className="text-lg mb-2"><strong>Total Visitors Per Year:</strong> 5000</p>
+                <img src={touristSpot?.image} alt='akhono' className="rounded-lg mb-4" />
+                <p className="text-lg mb-2"><strong>Country: </strong> {touristSpot?.country_name}</p>
+                <p className="text-lg mb-2"><strong>Location:</strong> {touristSpot?.location}</p>
+                <p className="text-lg mb-2"><strong>Spot name:</strong> {touristSpot?.tourists_spot_name}</p>
+                <p className="text-lg mb-2"><strong>Short Description:</strong> {touristSpot?.short_description}</p>
+                <p className="text-lg mb-2"><strong>Average Cost:</strong> {touristSpot?.average_cost} TK</p>
+                <p className="text-lg mb-2"><strong>Seasonality:</strong> {touristSpot?.seasonality}</p>
+                <p className="text-lg mb-2"><strong>Travel Time:</strong> {touristSpot?.travel_time}</p>
+                <p className="text-lg mb-2"><strong>Total Visitors Per Year:</strong> {touristSpot?.total_visitors_per_year}</p>
                  <Link to="/">
                      <Button>Go Home</Button>
                  </Link>
@@ -24,6 +54,9 @@ const TouristSpotDetails = () => {
             </div>
             
         </div>
+      )}
+
+        </> 
     );
 };
 

@@ -1,9 +1,27 @@
-import React, { useState } from 'react';
+import  { useEffect, useState } from 'react';
 import TouristCard from '../../components/TouristCard';
+import axios from 'axios';
 
 const AlltouristSpot = () => {
-    // State variable to manage sorting order
+   
     const [sortBy, setSortBy] = useState('ascending');
+    const [touristSpots, setTouristSpots] = useState([]);
+    const [loading,setLoading] = useState(true);
+  
+  
+    const fetchTouristSpots = async () => {
+      try {
+          const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/tourist_spots`);
+          setTouristSpots(response.data);
+          setLoading(false);
+      } catch (error) {
+          console.error('Error fetching tourist spots:', error);
+      }
+  };
+  
+    useEffect(() => {
+        fetchTouristSpots();
+    }, []);
   
     // const sortTouristSpots = () => {
     //     // Create a copy of touristSpots array to avoid mutating the original array
@@ -35,17 +53,23 @@ const AlltouristSpot = () => {
                         <option value="descending">Sort by Cost (High to Low)</option>
                     </select>
                 </div>
-                {/* Tourist spots grid */}
-                <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+        
  
-                        <TouristCard   />
-                        <TouristCard   />
-                        <TouristCard   />
-                        <TouristCard   />
-                        <TouristCard   />
+                {loading ? 
+                      <div className="w-full flex items-center justify-center">
+                        <span className="loading loading-bars loading-lg"></span>
+                     </div>
+                :
+               (
+                 <div className="container mx-auto  grid grid-cols-1 md:grid-cols-3 gap-4">
+                       { touristSpots.map(touristSpot=> <TouristCard touristSpot={touristSpot}/>)}
+                 </div> 
+                 )
+              }
+      
               
                 </div>
-            </div>
+           
         </>
     );
 };
