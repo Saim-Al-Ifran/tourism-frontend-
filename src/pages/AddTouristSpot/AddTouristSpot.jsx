@@ -33,7 +33,7 @@ function AddTouristsSpot() {
     const handleAddSpot = async() => {
  
 
-        const response = await axios.post('http://localhost:3000/tourist_spots', formData);
+        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/tourist_spots`, formData);
         console.log(response);
         if(response.status === 201){
             toast.success("Spot added successfully!");

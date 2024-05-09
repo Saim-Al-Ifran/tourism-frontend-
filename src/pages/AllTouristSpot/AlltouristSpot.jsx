@@ -1,4 +1,4 @@
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import TouristCard from '../../components/TouristCard';
 import axios from 'axios';
 
@@ -6,38 +6,33 @@ const AlltouristSpot = () => {
    
     const [sortBy, setSortBy] = useState('ascending');
     const [touristSpots, setTouristSpots] = useState([]);
-    const [loading,setLoading] = useState(true);
-  
+    const [loading, setLoading] = useState(true);
   
     const fetchTouristSpots = async () => {
-      try {
-          const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/tourist_spots`);
-          setTouristSpots(response.data);
-          setLoading(false);
-      } catch (error) {
-          console.error('Error fetching tourist spots:', error);
-      }
-  };
+        try {
+            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/tourist_spots`);
+            let sortedTouristSpots = response.data;
+
+            if (sortBy === 'ascending') {
+                sortedTouristSpots.sort((a, b) => a.average_cost - b.average_cost);
+            } else {
+                sortedTouristSpots.sort((a, b) => b.average_cost - a.average_cost);
+            }
+
+            setTouristSpots(sortedTouristSpots);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching tourist spots:', error);
+        }
+    };
   
     useEffect(() => {
         fetchTouristSpots();
-    }, []);
-  
-    // const sortTouristSpots = () => {
-    //     // Create a copy of touristSpots array to avoid mutating the original array
-    //     const sortedTouristSpots = [...touristSpots];
-    //     // Sort the array based on average_cost
-    //     sortedTouristSpots.sort((a, b) => {
-    //         if (sortBy === 'ascending') {
-    //             return a.average_cost - b.average_cost;
-    //         } else {
-    //             return b.average_cost - a.average_cost;
-    //         }
-    //     });
-    //     // Return the sorted array
-    //     return sortedTouristSpots;
-    // };
+    }, [sortBy]);
 
+    console.log(touristSpots);
+
+  
     return (
         <>
             <div className="container mx-auto py-8">
@@ -54,22 +49,17 @@ const AlltouristSpot = () => {
                     </select>
                 </div>
         
- 
                 {loading ? 
-                      <div className="w-full flex items-center justify-center">
+                    <div className="w-full flex items-center justify-center">
                         <span className="loading loading-bars loading-lg"></span>
-                     </div>
+                    </div>
                 :
-               (
-                 <div className="container mx-auto  grid grid-cols-1 md:grid-cols-3 gap-4">
-                       { touristSpots.map(touristSpot=> <TouristCard touristSpot={touristSpot}/>)}
-                 </div> 
-                 )
-              }
-      
-              
-                </div>
-           
+                (
+                    <div className="container mx-auto  grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {touristSpots.map(touristSpot => <TouristCard touristSpot={touristSpot} key={touristSpot.id} />)}
+                    </div> 
+                )}
+            </div>
         </>
     );
 };
