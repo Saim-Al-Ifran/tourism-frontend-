@@ -10,13 +10,8 @@ const Login = () => {
   const { signIn, signInWithGoogle, signInWithGithub , user ,error } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(error);
-  useEffect(() => {
-    document.title ="Login";
-    if (user) {
-      navigate("/");
-    }
-  }, [navigate, user]);
+  
+ 
 
   const handleSubmit = async (e) => {
     console.log(error); 

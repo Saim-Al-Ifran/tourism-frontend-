@@ -11,6 +11,7 @@ import Mylist from './pages/Mylist/Mylist';
 import EditTouristSpot from './pages/EditTouristSpot/EditTouristSpot';
 import TouristSpotDetails from './pages/TouristSpotDetails/TouristSpotDetails';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
+import NotFoundPage from './ui/NotFoundPage';
 
 
 const App = () => {
@@ -27,8 +28,7 @@ const App = () => {
                 <Route path="/spot_details/:id"  element={<PrivateRoute><TouristSpotDetails/></PrivateRoute>} />
                 <Route path="/login" element={<Login/>} />
                 <Route path="/register"  element={<Register/> } />
-         
-                {/* <Route path="*" element={<NotFoundPage/>}/> */}
+                <Route path="*" element={<NotFoundPage/>}/>
               </Routes>
               <Footer />
           </Router>

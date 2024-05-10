@@ -1,13 +1,15 @@
-import React, { useContext, useState } from 'react';
+import  { useContext, useEffect, useState } from 'react';
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../providers/AuthProvider';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function AddTouristsSpot() {
     const {user} = useContext(AuthContext);
     const{email,displayName} = user;
+    const navigate = useNavigate(); 
     const [formData, setFormData] = useState({
         image: '',
         tourists_spot_name: '',
@@ -22,6 +24,8 @@ function AddTouristsSpot() {
         user_name:displayName
     });
 
+ 
+      
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
