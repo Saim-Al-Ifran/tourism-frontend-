@@ -31,9 +31,9 @@ const Login = () => {
       if(!error){
         navigate(location?.state ? location.state : '/');
        }
-       toast.error('Google login failed');
+       console.log('Google login failed');
     } catch (error) {
-      toast.error('Google login failed');
+       console.log('Google login failed');
     }
   };
 
