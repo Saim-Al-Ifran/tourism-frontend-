@@ -29,7 +29,7 @@ const EditTouristSpot = () => {
   
     const fetchTouristSpot = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/tourist_spots/${id}`);
+            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/tourist_spots/${id}`);
             const data = response.data;
             setTouristSpot(data);
             setImageUrl(data.image);
