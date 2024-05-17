@@ -31,7 +31,6 @@ const Login = () => {
       if(!error){
         navigate(location?.state ? location.state : '/');
        }
-       console.log('Google login failed');
     } catch (error) {
        console.log('Google login failed');
     }
