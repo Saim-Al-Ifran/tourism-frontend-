@@ -35,7 +35,7 @@ const TouristSpotDetails = () => {
                 <span className="loading loading-infinity loading-lg"></span>
            </div>
       : (
-                <div className="container mx-auto py-8">
+         <div className="container mx-auto py-8">
             <h2 className="text-3xl font-bold mb-4 text-center">{touristSpot?.tourists_spot_name}</h2>
             <div className="max-w-lg mx-auto">
                 <img src={touristSpot?.image} alt='akhono' className="rounded-lg mb-4" />
